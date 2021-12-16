@@ -26,14 +26,23 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        {{ greetting }}
-        <input v-model="greetting">
-
-        <div v-if= "isVisible" class="box"></div>
+        {{ greeting }}
+        <input v-model="greeting">
         <br>
+
+        <input @keyup.enter="greet(greeting)" type="text"  name="" id="">
+
+        <button @click="toggleBox">  Show div </button>
+        <div v-if= "isVisible" class="box"> </div>
+        <br>
+        <!-- <button @click="isVisible = !isVisible">  Show div </button> -->
+        <!-- <button @click="isVisible = !isVisible">  Show div </button> -->
+        <!-- <button v-on:click="isVisible = !isVisible">  Show div </button> -->
+        <!-- <br>
         <div v-else-if ="isVisible2" class="box two"></div>
         <br>
-        <div v-else class="box three"></div>
+        <div v-else class="box three"></div> -->
+
 
 
     </div>
@@ -44,9 +53,16 @@
         let app = Vue.createApp({
             data: function(){
                 return {
-                    greetting: 'Hellow vue 3!',
-                    isVisible: false,
-                    isVisible2: false,
+                    greeting: 'Hellow vue 3!',
+                    isVisible: false
+                }
+            },
+            methods:{
+                toggleBox(){
+                    this.isVisible = !this.isVisible
+                },
+                greet(greeting){
+                    console.log("helo " + greeting)
                 }
             }
         })
